@@ -108,21 +108,99 @@
     border-bottom:1px solid var(--line);
   }
   header .inner{
-    display:flex; align-items:center; justify-content:space-between;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
     padding:18px 32px;
-  }
-  .logo{
-  display:flex;
-  align-items:center;
-  gap:12px;
+    max-width:1200px;
+    margin:auto;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-family:var(--display);
+    font-weight:600;
 }
 
 .nav-avatar{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  object-fit:cover;
-  border:2px solid var(--gold);
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid var(--gold);
+}
+
+.nav-links{
+    display:flex;
+    gap:28px;
+    font-size:14px;
+    color:var(--muted);
+}
+
+.nav-links a:hover{
+    color:var(--text);
+}
+
+.header-actions{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.hamburger{
+    display:none;
+    background:none;
+    border:none;
+    color:white;
+    font-size:28px;
+    cursor:pointer;
+}
+
+@media (max-width:768px){
+
+    .hello-btn,
+    .resume-btn{
+        display:none;
+    }
+
+    .hamburger{
+        display:block;
+    }
+
+    .nav-links{
+        position:absolute;
+        top:80px;
+        left:0;
+        width:100%;
+        background:rgba(10,22,40,.98);
+        flex-direction:column;
+        align-items:center;
+        gap:20px;
+        padding:25px 0;
+        display:none;
+        border-top:1px solid var(--line);
+    }
+
+    .nav-links.active{
+        display:flex;
+    }
+
+    .logo span{
+        display:none;
+    }
+
+    .nav-avatar{
+        width:40px;
+        height:40px;
+    }
+}
+.wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+    width:100%;
 }
 
   /* ===== Hero ===== */
@@ -323,18 +401,39 @@
 
 <header>
   <div class="inner">
+
     <div class="logo">
-  <img src="mohaa.png" alt="Mohamed" class="nav-avatar">
-  <span>Mohamed Ahmed</span>
-</div>
-    <nav class="nav-links">
+      <img src="mohaa.png" alt="Mohamed Ahmed" class="nav-avatar">
+      <span>Mohamed Ahmed</span>
+    </div>
+
+    <nav class="nav-links" id="navLinks">
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
       <a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a href="mailto:mohamadeyaminka29@gmail.com" class="btn btn-ghost" style="padding:9px 18px; font-size:13px;">Say hello</a>
+
+    <div class="header-actions">
+
+      <a href="MOHAMED ABDI AHMED CV Updated.pdf"
+         download
+         class="btn btn-primary resume-btn">
+         Resume
+      </a>
+
+      <a href="mailto:mohamadeyaminka29@gmail.com"
+         class="btn btn-ghost hello-btn">
+         Say Hello
+      </a>
+
+      <button class="hamburger" id="hamburger">
+        ☰
+      </button>
+
+    </div>
+
   </div>
 </header>
 
@@ -685,6 +784,14 @@
       setTimeout(() => requestAnimationFrame(animateDot), 2600);
     }
   }
+</script>
+<script>
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+});
 </script>
 
 </body>
